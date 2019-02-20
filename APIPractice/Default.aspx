@@ -104,8 +104,9 @@
                 <td><asp:LinkButton ID="lbPredict" runat="server" OnClick="lbPredict_Click">Predict</asp:LinkButton></td>
             </tr>
         </table>
-        <asp:Label ID="lblResults" runat="server" Text="{Results Show here}"></asp:Label>
 
+        <h2><asp:Label ID="lblResults" runat="server" Text="{Results Show here}"></asp:Label></h2>
+        <br /> <br />
         
     </form>
 </body>

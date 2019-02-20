@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using RestSharp;
+using Newtonsoft.Json.Linq;
 
 namespace APIPractice
 {
@@ -28,7 +29,16 @@ namespace APIPractice
             IRestResponse response = client.Execute(request);
             // PostMan code stops here
 
-            lblResults.Text = response.Content.ToString();
+            // Ugly Output
+            // lblResults.Text = response.Content.ToString();
+
+            // Clean Output with NewtonSoft.Json
+            var results = JObject.Parse(response.Content);
+            string sPrediction = results["Results"]["output1"]["value"]["Values"].ToString();
+            sPrediction = sPrediction.Replace("[", "").Replace("]", "").Replace("\"", "");
+
+            // Final Formatted Results
+            lblResults.Text = Convert.ToDecimal(sPrediction).ToString("#0.##%");
         }
     }
 }
